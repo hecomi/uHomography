@@ -211,6 +211,22 @@ public class Homography : MonoBehaviour
         material.SetFloatArray("_InvHomography", invHomography_);
         Graphics.Blit(source, destination, material);
     }
+
+    public Vector2 GetHomographyPosition(Vector2 pos)
+    {
+        float s =  homography_[6] * pos.x + homography_[7] * pos.y + homography_[8];
+        float x = (homography_[0] * pos.x + homography_[1] * pos.y + homography_[2]) / s;
+        float y = (homography_[3] * pos.x + homography_[4] * pos.y + homography_[5]) / s;
+        return new Vector2(x, y);
+    }
+
+    public Vector2 GetInverseHomographyPosition(Vector2 pos)
+    {
+        float s =  invHomography_[6] * pos.x + invHomography_[7] * pos.y + invHomography_[8];
+        float x = (invHomography_[0] * pos.x + invHomography_[1] * pos.y + invHomography_[2]) / s;
+        float y = (invHomography_[3] * pos.x + invHomography_[4] * pos.y + invHomography_[5]) / s;
+        return new Vector2(x, y);
+    }
 }
 
 }

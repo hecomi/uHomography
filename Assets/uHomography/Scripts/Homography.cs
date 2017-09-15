@@ -10,10 +10,8 @@ public class Homography : MonoBehaviour
 {
     const string VertexPrefabPath = "uHomography/Prefabs/Vertex";
 
-    public bool showHandles = true;
-
     [SerializeField]
-    KeyCode toggleKey = KeyCode.None;
+    KeyCode handleToggleKey = KeyCode.None;
 
     bool isHandlesVisible_ = true;
 
@@ -40,6 +38,9 @@ public class Homography : MonoBehaviour
 
     [SerializeField, HideInInspector]
     DraggableVertex v11;
+
+    float[] homography_ = null; 
+    float[] invHomography_ = null;
 
     void CreateCameraIfNeeded()
     {
@@ -159,9 +160,21 @@ public class Homography : MonoBehaviour
         return new float[] { o11, o12, o13, o21, o22, o23, o31, o32, o33 };
     }
 
+    void UpdateHomographyMatrix()
+    {
+        homography_ = CalcHomographyMatrix();
+        invHomography_ = CalcInverseMatrix(homography_);
+        v00.hasChanged = v01.hasChanged = v10.hasChanged = v11.hasChanged = false;
+    }
+
+    void Start()
+    {
+        UpdateHomographyMatrix();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (Input.GetKeyDown(handleToggleKey))
         {
             isHandlesVisible_ = !isHandlesVisible_;
             v00.gameObject.SetActive(isHandlesVisible_);
@@ -187,10 +200,15 @@ public class Homography : MonoBehaviour
 
         CreateMaterialIfNeeded();
 
-        var homography = CalcHomographyMatrix();
-        var invHomography = CalcInverseMatrix(homography);
-        material.SetFloatArray("_Homography", homography);
-        material.SetFloatArray("_InvHomography", invHomography);
+        bool isHandleMoved = (v00.hasChanged || v01.hasChanged || v10.hasChanged || v11.hasChanged);
+        bool isNotInitialized = (homography_.Length == 0) || (invHomography_.Length == 0);
+        if (isHandleMoved || isNotInitialized)
+        {
+            UpdateHomographyMatrix();
+        }
+
+        material.SetFloatArray("_Homography", homography_);
+        material.SetFloatArray("_InvHomography", invHomography_);
         Graphics.Blit(source, destination, material);
     }
 }

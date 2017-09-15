@@ -10,10 +10,12 @@ public class DraggableVertex
     , IBeginDragHandler
     , IDragHandler
 {
-    public Camera camera;
+    public new Camera camera;
 
     Vector3 startPos_;
     Vector3 startMousePos_;
+
+    public bool hasChanged { get; set; }
 
     public Vector2 viewPosition
     {
@@ -39,6 +41,7 @@ public class DraggableVertex
         var startPos = camera.ScreenToWorldPoint(new Vector3(startMousePos_.x, startMousePos_.y, z));
         var dPos = currentPos - startPos;
         transform.localPosition = startPos_ + dPos;
+        hasChanged = true;
     }
 }
 

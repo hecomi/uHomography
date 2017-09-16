@@ -42,6 +42,11 @@ public class Homography : MonoBehaviour
     float[] homography_ = null;
     float[] invHomography_ = null;
 
+    public new Camera camera
+    {
+        get { return uiCamera; }
+    }
+
     void CreateCameraIfNeeded()
     {
         if (uiCamera) return;

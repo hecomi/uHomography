@@ -39,7 +39,7 @@ public class Homography : MonoBehaviour
     [SerializeField, HideInInspector]
     DraggableVertex v11;
 
-    float[] homography_ = null; 
+    float[] homography_ = null;
     float[] invHomography_ = null;
 
     void CreateCameraIfNeeded()
@@ -51,7 +51,7 @@ public class Homography : MonoBehaviour
         go.transform.SetParent(transform);
 
         uiCamera = go.AddComponent<Camera>();
-        uiCamera.clearFlags = CameraClearFlags.Nothing;
+        uiCamera.clearFlags = CameraClearFlags.Depth;
         uiCamera.orthographic = true;
         uiCamera.orthographicSize = 5.5f;
         uiCamera.useOcclusionCulling = false;
@@ -99,13 +99,13 @@ public class Homography : MonoBehaviour
         var p10 = v10.viewPosition;
         var p11 = v11.viewPosition;
 
-        var x00 = p00.x; 
+        var x00 = p00.x;
         var y00 = p00.y;
-        var x01 = p01.x; 
+        var x01 = p01.x;
         var y01 = p01.y;
-        var x10 = p10.x; 
+        var x10 = p10.x;
         var y10 = p10.y;
-        var x11 = p11.x; 
+        var x11 = p11.x;
         var y11 = p11.y;
 
         var a = x10 - x11;
@@ -201,7 +201,9 @@ public class Homography : MonoBehaviour
         CreateMaterialIfNeeded();
 
         bool isHandleMoved = (v00.hasChanged || v01.hasChanged || v10.hasChanged || v11.hasChanged);
-        bool isNotInitialized = (homography_.Length == 0) || (invHomography_.Length == 0);
+        bool isNotInitialized =
+            (homography_ == null) || (homography_.Length == 0) ||
+            (invHomography_ == null) || (invHomography_.Length == 0);
         if (isHandleMoved || isNotInitialized)
         {
             UpdateHomographyMatrix();

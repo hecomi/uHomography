@@ -8,10 +8,14 @@ namespace uHomography
 public class DraggableVertex 
     : MonoBehaviour
     , IBeginDragHandler
+    , IEndDragHandler
     , IDragHandler
 {
     public new Camera camera;
+    public Color normalColor = Color.white;
+    public Color dragColor = Color.red;
 
+    SpriteRenderer renderer_;
     Vector3 startPos_;
     Vector3 startMousePos_;
 
@@ -27,10 +31,22 @@ public class DraggableVertex
         }
     }
 
+    void Start()
+    {
+        renderer_ = GetComponent<SpriteRenderer>();
+        renderer_.color = normalColor;
+    }
+
     public void OnBeginDrag(PointerEventData data)
     {
         startPos_ = transform.localPosition;
         startMousePos_ = Input.mousePosition;
+        renderer_.color = dragColor;
+    }
+
+    public void OnEndDrag(PointerEventData data)
+    {
+        renderer_.color = normalColor;
     }
 
     public void OnDrag(PointerEventData data)

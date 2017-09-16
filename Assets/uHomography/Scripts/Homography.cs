@@ -167,11 +167,6 @@ public class Homography : MonoBehaviour
         v00.hasChanged = v01.hasChanged = v10.hasChanged = v11.hasChanged = false;
     }
 
-    void Start()
-    {
-        UpdateHomographyMatrix();
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(handleToggleKey))

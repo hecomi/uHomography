@@ -1,29 +1,20 @@
 uHomography
 ===========
 
-**uHomography** is an Image Effect to transform the screen with Homography Transformation just by dragging handles.
+**uHomography** is an Image Effect that allows you to transform the screen with Homography Transformation by simply dragging the handles.
 
-![uHomography](https://raw.githubusercontent.com/wiki/hecomi/uHomography/image.png)
+![uHomography](https://raw.githubusercontent.com/wiki/hecomi/uHomography/image.gif)
 
-License
+
+Install
 -------
-The MIT License (MIT)
 
-Copyright (c) 2017 hecomi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+- Unity Package
+  - Download the latest .unitypackage from [Release page](https://github.com/hecomi/uHomography/releases).
+- Git URL (UPM)
+  - Add `https://github.com/hecomi/uHomography.git#upm` to Package Manager.
+- Scoped Registry (UPM)
+  - Add a scoped registry to your project.
+    - URL: `https://registry.npmjs.com`
+    - Scope: `com.hecomi`
+  - Install uHomography in Package Manager.

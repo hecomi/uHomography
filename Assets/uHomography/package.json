@@ -1,0 +1,27 @@
+{
+    "name": "com.hecomi.uhomography",
+    "version": "1.0.0",
+    "displayName": "uHomography",
+    "description": "Homography Transformation Image Effect for Unity.",
+    "author": {
+        "name": "hecomi",
+        "url": "https://tips.hecomi.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hecomi/uHomography"
+    },
+    "keywords": [
+        "unity",
+        "shader",
+        "homography"
+    ],
+    "license": "MIT License",
+    "samples": [
+        {
+            "displayName": "Sample",
+            "description": "A basic example",
+            "path": "Samples~"
+        }
+    ]
+}
